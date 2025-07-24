@@ -1,0 +1,14 @@
+services:
+  redisinsight:
+    container_name: redisinsight
+    image: redislabs/redisinsight:1.14.0
+    ports:
+      - "${REDISINSIGHT_PORT}:8001"
+    volumes:
+      - './redisinsight:/db'
+    restart: unless-stopped
+    environment:
+      - REDISINSIGHT_HOST=0.0.0.0
+      - REDISINSIGHT_PORT=8001     # Puerto interno (no el mapeado)
+      - REDISINSIGHT_DEBUG=true    # Habilita logs detallados (opcional)
+
